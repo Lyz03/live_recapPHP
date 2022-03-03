@@ -3,33 +3,14 @@
 namespace App\Model\Entity;
 
 use DateTime;
-class Article
+class Article extends AbstractEntity
 {
 
-    private ?int $id;
     private string $title;
     private string $content;
     private DateTime $dateAdd;
     private DateTime $dateUpdate;
     private User $author;
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int|null $id
-     * @return Article
-     */
-    public function setId(?int $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
 
     /**
      * @return string

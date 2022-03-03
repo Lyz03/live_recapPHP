@@ -2,10 +2,9 @@
 
 namespace App\Model\Entity;
 
-class Comment
+class Comment extends AbstractEntity
 {
 
-    private ?int $id;
     private string $content;
     private User $author;
     private Article $article;

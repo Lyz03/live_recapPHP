@@ -2,30 +2,11 @@
 
 namespace App\Model\Entity;
 
-class Role
+class Role extends AbstractEntity
 {
 
-    private ?int $id;
     private string $roleName;
     private array $users;
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int|null $id
-     * @return Role
-     */
-    public function setId(?int $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
 
     /**
      * @return string

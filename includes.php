@@ -2,6 +2,7 @@
 
 require __DIR__ . "/Model/DB.php";
 
+require __DIR__ . "/Model/Entity/AbstractEntity.php";
 require __DIR__ . "/Model/Entity/User.php";
 require __DIR__ . "/Model/Entity/Role.php";
 require __DIR__ . "/Model/Entity/Article.php";

@@ -2,33 +2,14 @@
 
 namespace App\Model\Entity;
 
-class User
+class User extends AbstractEntity
 {
 
-    private ?int $id;
     private string $email;
     private string $firstname;
     private string $lastname;
     private string $password;
     private int $age;
-
-    /**
-     * @return int|null
-     */
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int|null $id
-     * @return User
-     */
-    public function setId(?int $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
 
     /**
      * @return string

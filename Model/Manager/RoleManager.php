@@ -16,6 +16,9 @@ class RoleManager
         $this->userRoleManager = new UserRoleManager();
     }
 
+    /**
+     * @return array
+     */
     public function getAll(): array {
         $roles = [];
         $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME);

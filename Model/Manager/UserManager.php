@@ -10,13 +10,14 @@ class UserManager
 
     private const TABLENAME = 'user';
 
-    public function getUserById(int $userId): array {
-
+    /**
+     * @return array
+     */
+    public function getAll(): array {
         $users = [];
-        $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME . "  WHERE id = $userId");
+        $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME);
 
         if ($query) {
-            $users = [];
             foreach ($query->fetchAll() as $value) {
                 $users[] = (new User())
                     ->setId($value['id'])
@@ -24,9 +25,33 @@ class UserManager
                     ->setFirstname($value['firstname'])
                     ->setLastname($value['lastname'])
                     ->setPassword($value['password'])
-                    ->setAge($value['age'])
-                ;
+                    ->setAge($value['age']);
             }
+        }
+
+        return $users;
+    }
+
+    /**
+     * @param int $userId
+     * @return User
+     */
+    public function getUserById(int $userId): User {
+
+        $users = new User;
+        $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME . "  WHERE id = $userId");
+
+        if ($query) {
+            $data = $query->fetch();
+
+             $users
+                 ->setId($data['id'])
+                 ->setEmail($data['email'])
+                 ->setFirstname($data['firstname'])
+                 ->setLastname($data['lastname'])
+                 ->setPassword($data['password'])
+                 ->setAge($data['age'])
+             ;
         }
         return $users;
     }

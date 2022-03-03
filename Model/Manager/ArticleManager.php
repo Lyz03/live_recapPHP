@@ -11,6 +11,9 @@ class ArticleManager
 
     private const TABLENAME = 'article';
 
+    /**
+     * @return array
+     */
     public function getAll(): array {
 
         $articles = [];
@@ -24,7 +27,7 @@ class ArticleManager
                 $articles[] = (new Article())
                     ->setId($value['id'])
                     ->setTitle($value['title'])
-                    ->setAuthor(($userManager->getUserById($value['user_fk'])[0]))
+                    ->setAuthor(($userManager->getUserById($value['user_fk'])))
                     ->setContent($value['content'])
                     ->setDateAdd(DateTime::createFromFormat($format, $value['date_add']))
                     ->setDateUpdate(DateTime::createFromFormat($format, $value['date_update']));

@@ -8,7 +8,7 @@ use App\Model\Entity\User;
 class UserManager
 {
 
-    private const TABLENAME = 'user';
+    public const TABLENAME = 'user';
 
     /**
      * @return array
@@ -18,6 +18,9 @@ class UserManager
         $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME);
 
         if ($query) {
+
+            $userRoleManager = new UserRoleManager();
+
             foreach ($query->fetchAll() as $value) {
                 $users[] = (new User())
                     ->setId($value['id'])
@@ -25,7 +28,9 @@ class UserManager
                     ->setFirstname($value['firstname'])
                     ->setLastname($value['lastname'])
                     ->setPassword($value['password'])
-                    ->setAge($value['age']);
+                    ->setAge($value['age'])
+                    ->setRole($userRoleManager->getRoleByUserId($value['id']))
+                ;
             }
         }
 
@@ -36,23 +41,44 @@ class UserManager
      * @param int $userId
      * @return User
      */
-    public function getUserById(int $userId): User {
+    public function getUserById(int $userId): ?User {
 
-        $users = new User;
+        $user = null;
         $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME . "  WHERE id = $userId");
 
-        if ($query) {
-            $data = $query->fetch();
+        if ($query && $data = $query->fetch()) {
 
-             $users
+            $userRoleManager = new UserRoleManager();
+
+             $user
                  ->setId($data['id'])
                  ->setEmail($data['email'])
                  ->setFirstname($data['firstname'])
                  ->setLastname($data['lastname'])
                  ->setPassword($data['password'])
                  ->setAge($data['age'])
+                 ->setRole($userRoleManager->getRoleByUserId($data['id']))
              ;
         }
+        return $user;
+    }
+
+    /*
+    private function createUser(array $data, User $user ): User {
+        $users = $user;
+        $userRoleManager = new UserRoleManager();
+
+        $users
+            ->setId($data['id'])
+            ->setEmail($data['email'])
+            ->setFirstname($data['firstname'])
+            ->setLastname($data['lastname'])
+            ->setPassword($data['password'])
+            ->setAge($data['age'])
+            ->setRole($userRoleManager->getRoleByUserId($data['id']))
+        ;
+
         return $users;
     }
+    */
 }

@@ -9,7 +9,7 @@ use DateTime;
 class ArticleManager
 {
 
-    private const TABLENAME = 'article';
+    public const TABLENAME = 'article';
 
     /**
      * @return array

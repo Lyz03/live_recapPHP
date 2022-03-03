@@ -5,7 +5,7 @@ namespace App\Model\Entity;
 class AbstractEntity
 {
 
-    private ?int $id;
+    private ?int $id = null;
 
     /**
      * @return int|null

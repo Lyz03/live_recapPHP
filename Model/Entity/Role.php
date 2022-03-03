@@ -6,7 +6,6 @@ class Role extends AbstractEntity
 {
 
     private string $roleName;
-    private array $users;
 
     /**
      * @return string
@@ -25,25 +24,5 @@ class Role extends AbstractEntity
         $this->roleName = $roleName;
         return $this;
     }
-
-    /**
-     * @return array
-     */
-    public function getUsers(): array
-    {
-        return $this->users;
-    }
-
-    /**
-     * @param array $user
-     * @return Role
-     */
-    public function setUsers(array $user): self
-    {
-        $this->users = $user;
-        return $this;
-    }
-
-
 
 }

@@ -8,7 +8,7 @@ use App\Model\Entity\Role;
 class RoleManager
 {
 
-    private const TABLENAME = 'role';
+    public const TABLENAME = 'role';
 
     private UserRoleManager $userRoleManager;
 
@@ -28,7 +28,7 @@ class RoleManager
                 $roles[] = (new Role())
                     ->setId($value['id'])
                     ->setRoleName($value['role_name'])
-                    ->setUsers($this->userRoleManager->getUserByRoleId($value['id']));
+                ;
             }
         }
 

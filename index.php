@@ -1,13 +1,9 @@
 <?php
 
-use App\Model\DB;
-use App\Model\Manager\RoleManager;
-use App\Model\Manager\UserManager;
-
 require __DIR__ . '/includes.php';
 
-$test = new \App\Model\Manager\ArticleManager();
-$test = $test->getAll();
+$test = new \App\Model\Manager\UserRoleManager();
+$test = $test->getUserByRoleId(2);
 
 echo '<pre>';
 var_dump($test);

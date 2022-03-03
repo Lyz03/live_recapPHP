@@ -9,11 +9,15 @@ use App\Model\Entity\Role;
 class UserRoleManager
 {
 
+    private const TABLENAME = 'user';
+    private const TABLENAME2 = 'user_role';
+
     public function getUserByRoleId(int $roleId): array {
 
         $users = [];
         $query = DB::getConnection()->query("
-            SELECT * FROM user WHERE id IN (SELECT user_fk FROM user_role WHERE role_fk = $roleId)");
+            SELECT * FROM " . self::TABLENAME .
+            " WHERE id IN (SELECT user_fk FROM " . self::TABLENAME2 . " WHERE role_fk = $roleId)");
 
         if ($query) {
             foreach ($query->fetchAll() as $value) {

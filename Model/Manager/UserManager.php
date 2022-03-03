@@ -8,10 +8,12 @@ use App\Model\Entity\User;
 class UserManager
 {
 
+    private const TABLENAME = 'user';
+
     public function getUserById(int $userId): array {
 
         $users = [];
-        $query = DB::getConnection()->query("SELECT * FROM user WHERE id = $userId");
+        $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME . "  WHERE id = $userId");
 
         if ($query) {
             $users = [];

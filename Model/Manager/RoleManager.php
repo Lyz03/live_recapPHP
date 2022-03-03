@@ -7,6 +7,9 @@ use App\Model\Entity\Role;
 
 class RoleManager
 {
+
+    private const TABLENAME = 'role';
+
     private UserRoleManager $userRoleManager;
 
     public function __construct() {
@@ -15,7 +18,7 @@ class RoleManager
 
     public function getAll(): array {
         $roles = [];
-        $query = DB::getConnection()->query("SELECT * FROM role");
+        $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME);
 
         if ($query) {
             foreach ($query->fetchAll() as $value) {

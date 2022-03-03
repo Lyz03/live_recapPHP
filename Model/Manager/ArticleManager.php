@@ -8,10 +8,13 @@ use DateTime;
 
 class ArticleManager
 {
+
+    private const TABLENAME = 'article';
+
     public function getAll(): array {
 
         $articles = [];
-        $query = DB::getConnection()->query("SELECT * FROM article");
+        $query = DB::getConnection()->query("SELECT * FROM " . self::TABLENAME);
 
         if($query) {
             $userManager = (new UserManager());
